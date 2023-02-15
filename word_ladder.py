@@ -15,18 +15,18 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
         dictionary = [y.strip() for y in x.readlines()]
     dictionary.remove(start_word)
     while queue:
-            current_stack = queue.popleft()
-            current_word = current_stack[-1]
-            if current_word == end_word:
-                return current_stack
-            current_dict = copy(dictionary)
-            for next_word in current_dict:
-                if _adjacent(current_word, next_word):
-                    if next_word in dictionary:
-                        new_stack = current_stack.copy()
-                        new_stack.append(next_word)
-                        queue.append(new_stack)
-                        dictionary.remove(next_word)
+        current_stack = queue.popleft()
+        current_word = current_stack[-1]
+        if current_word == end_word:
+            return current_stack
+        current_dict = copy(dictionary)
+        for next_word in current_dict:
+            if _adjacent(current_word, next_word):
+                if next_word in dictionary:
+                    new_stack = current_stack.copy()
+                    new_stack.append(next_word)
+                    queue.append(new_stack)
+                    dictionary.remove(next_word)
     return None
 
     '''
@@ -61,8 +61,8 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
 def verify_word_ladder(ladder):
     if ladder:
         count = 0
-        for i in range(len(ladder)-1):
-            if _adjacent(ladder[i], ladder[i+1]):
+        for i in range(len(ladder) - 1):
+            if _adjacent(ladder[i], ladder[i + 1]):
                 count += 0
             else:
                 count += 1
