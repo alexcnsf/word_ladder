@@ -2,16 +2,17 @@
 from collections import deque
 from copy import copy
 
-def word_ladder(start_word, end_word, dictionary_file='words5.dict'): 
+
+def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     if start_word == end_word:
-        return [start_word]   
+        return [start_word]
     if len(start_word) != len(end_word):
         return None
     stack = [start_word]
     queue = deque([])
     queue.append(stack)
     with open('words5.dict') as x:
-        dictionary = [y.strip() for y in x.readlines()]  
+        dictionary = [y.strip() for y in x.readlines()]
     dictionary.remove(start_word)
     while queue:
             current_stack = queue.popleft()
@@ -26,9 +27,7 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
                         new_stack.append(next_word)
                         queue.append(new_stack)
                         dictionary.remove(next_word)
-    return None 
-    
- 
+    return None
 
     '''
     Returns a list satisfying the following properties:
@@ -44,12 +43,14 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     ```
     may give the output
     ```
-    ['stone', 'shone', 'phone', 'phony', 'peony', 'penny', 'benny', 'bonny', 'boney', 'money']
+    ['stone', 'shone', 'phone', 'phony', 'peony', 'penny', 'benny', 'bonny',
+    'boney', 'money']
     ```
     but the possible outputs are not unique,
     so you may also get the output
     ```
-    ['stone', 'shone', 'shote', 'shots', 'soots', 'hoots', 'hooty', 'hooey', 'honey', 'money']
+    ['stone', 'shone', 'shote', 'shots', 'soots', 'hoots', 'hooty', 'hooey',
+    'honey', 'money']
     ```
     (We cannot use doctests here because the outputs are not unique.)
     Whenever it is impossible to generate a word ladder between the two words,
@@ -68,7 +69,6 @@ def verify_word_ladder(ladder):
         return (count == 0)
     else:
         return False
-
 
     '''
     Returns True if each entry of the input list is adjacent to its neighbors;
@@ -102,4 +102,3 @@ def _adjacent(word1, word2):
     >>> _adjacent('stone','money')
     False
     '''
-
